@@ -569,10 +569,6 @@ func (c *cmdList) IP4ColumnData(cInfo api.Container, cState *api.ContainerState,
 	if cInfo.IsActive() && cState != nil && cState.Network != nil {
 		ipv4s := []string{}
 		for netName, net := range cState.Network {
-			if net.Type == "loopback" {
-				continue
-			}
-
 			for _, addr := range net.Addresses {
 				if shared.StringInSlice(addr.Scope, []string{"link", "local"}) {
 					continue
@@ -594,10 +590,6 @@ func (c *cmdList) IP6ColumnData(cInfo api.Container, cState *api.ContainerState,
 	if cInfo.IsActive() && cState != nil && cState.Network != nil {
 		ipv6s := []string{}
 		for netName, net := range cState.Network {
-			if net.Type == "loopback" {
-				continue
-			}
-
 			for _, addr := range net.Addresses {
 				if shared.StringInSlice(addr.Scope, []string{"link", "local"}) {
 					continue
